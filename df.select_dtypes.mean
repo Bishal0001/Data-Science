@@ -1,0 +1,46 @@
+'''Q3. Average column
+
+character backgroundcharacter
+Stuck somewhere?
+Ask for help from a TA and get it resolved.
+Get help from TA.
+Given a data frame consisting of payments of certain candidates, complete the function new_avg() 
+that first calculates the mean payment up to 2 decimals of each candidate in a column avg_payment
+and returns the data frame after deleting all the columns other than ‘mar_payment’ and the new column.
+
+Input Format : {'name':['a','b','c','d','e'],'jan_payment':[10,12,13,14,15],'feb_payment':[11,11,11,11,11],'mar_payment':[100,120,130,130,140]}
+
+A dictionary which later is typecasted to a Dataframe and passed as an argument.
+
+Output Format:
+
+A data frame 
+Sample Input:
+
+
+Sample Output:
+
+
+
+Sample Explanation:
+
+A new column avg_payment is added to the data frame consisting of average payment of each of the name,
+For example the avg_payment of 'a' is (10+11+100)/3 = 40.33 and the avg_payment of 'b' is (12+11+120)/3 = 47.67.
+In the end a dataframe with the columns, the new column (avg_payment) and mar_payment is returned because all the
+other columns are deleted as asked.
+
+
+''' SOL'''
+
+import pandas as pd
+def new_avg(df):
+    '''df is a dataframe with columns ['name', 'jan_payment', 'feb_payment', 'mar_payment']
+        A dataframe is expected to be returned'''
+    
+    # YOUR CODE GOES HERE
+    dfff = df.select_dtypes('number').mean(axis=1)
+    df1 = round(dfff,2)
+    df['avg_payment'] = df1
+    del df['feb_payment']
+    del df['jan_payment']
+    return (df)
