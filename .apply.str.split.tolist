@@ -1,0 +1,52 @@
+'''
+Q4. Location Divide
+
+character backgroundcharacter
+Stuck somewhere?
+Ask for help from a TA and get it resolved.
+Get help from TA.
+Problem Description:
+
+Given a location dataframe, with a single column "City/tState", return the preprocessed dataframe with names of City and State separated.
+
+Input Format:
+
+First line of the input contains the dataframe, in the form of dictionary.
+
+Output Format:
+
+The new dataframe
+
+Sample Input: {"City\tState":['Kolkata\tWest Bengal', 'Chennai\tTamil Nadu', 'Hyderabad\tTelengana', 'Bangalore\tKarnataka']}
+
+
+
+
+Sample Output:
+
+
+
+Sample Explanation:
+
+The respective city and state are separated and shown in the new dataframe '''
+
+'''SOL : 1'''
+
+
+
+import pandas as pd
+def location_divide(df):
+    '''
+    input:
+    df -> the dataframe provided to the function
+    
+    output:
+    df_new -> the new preprocessed dataframe
+    '''
+    df_new = None
+    
+    # Your code starts here
+    Mask = df['City\tState'].apply(lambda x: str(x).split('\t')).to_list()
+    g = pd.DataFrame(Mask)
+    g = g.rename(columns={0:'City',1:'State'})
+    
