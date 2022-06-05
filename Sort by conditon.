@@ -1,0 +1,37 @@
+''' Given a data frame as shown below, return the series of male names in the age group of 23-30 (inclusive of both 23 and 30).
+The indices of the returned series are being reset in the back-end.
+
+
+
+Input Format:
+
+A data frame with the same columns as shown above.
+Output Format:
+
+A series of names
+Sample Input:{'name':["Mark","Ram","Dev"], "profession":['dev','mle','mle'],"gender":['male','male','male'], "age":[21,20,30],
+"review":['need improvement','Can be improved','Scope of improvement'],"rating":[10,5,7]}
+
+
+
+Sample Output:
+
+
+
+Sample explanation:
+
+The customers with names Deb and Laxman are in the age range of 23-30 and are male. '''
+
+
+''' SOL '''
+
+
+
+import pandas as pd
+def specific_customers(df):
+    ''' df is a dataframe with columns ['name', 'profession', 'gender', 'age', 'review', 'rating']
+        Output -> A series with required names is expected to be returned'''
+    # YOUR CODE GOES HERE
+    df = df[df['gender']=='male']
+    dff = df.loc[(df['age']>=25) & (df['age']<=30)]
+    return (dff['name'])
