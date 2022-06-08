@@ -1,0 +1,74 @@
+'''
+Q5. Categorise ages
+
+character backgroundcharacter
+Stuck somewhere?
+Ask for help from a TA and get it resolved.
+Get help from TA.
+
+You have a data frame that consists of the names and ages of a few candidates. You need to convert age into categories according to the following conditions:
+1. If age<18: kid
+2. age >=18 and <=50: adult
+3. age>=50 senior
+Write a python program to do so using apply function.
+
+Input Format:
+
+A dataframe
+Output Format:
+
+A dataframe
+Sample Input:
+
+{'name':["Ram","Shyam","Mukesh","Suresh"],'age':[10,18,60,50]}
+Sample Output:
+
+     name     age 
+0     Ram     kid 
+1   Shyam   adult 
+2  Mukesh  senior 
+3  Suresh   adult
+'''
+
+
+'''SOL : 1'''
+
+import pandas as pd
+import numpy as np
+def replace_ages(a):
+    '''a is a dataframe with columns ['name', 'age']
+       Output A dataframe with same columns but with changed records as per required is expected to be returned'''
+
+    # YOUR CODE GOES HERE
+    
+    aa = pd.DataFrame(a, columns=['name' , 'age'])
+    def agefunc(a):
+        if a < 18:
+            return 'kid'
+        elif a >= 18 and a <= 50:
+            return 'adult'
+        elif a >= 50:
+            return 'senior'
+    
+    aa['age'] = aa['age'].apply(agefunc)
+    return aa
+    
+    
+  '''SOL : 2'''
+
+
+
+import pandas as pd
+import numpy as np
+def replace_ages(a):
+    # YOUR CODE GOES HERE
+     aa = pd.DataFrame(a, columns=['name' , 'age'])
+     conditions = [
+     (aa['age'] < 18),
+     (aa['age'] >= 18) & (aa['age'] <= 50),
+     (aa['age'] >= 50)
+     ]
+
+     values = ['kid','adult','senior']
+     aa['age'] = np.select(conditions,values)  
+     return aa
