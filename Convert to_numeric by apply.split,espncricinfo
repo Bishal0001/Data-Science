@@ -1,0 +1,26 @@
+dravid = pd.read_html('https://stats.espncricinfo.com/ci/engine/player/28114.html?class=1;template=results;type=allround;view=match')
+shewag = pd.read_html('https://stats.espncricinfo.com/ci/engine/player/35263.html?class=1;template=results;type=allround;view=match')
+
+
+type(dravid)
+len(dravid)
+
+
+dravid = dravid[3]
+shewag = shewag[3]
+
+
+dravid.head()
+shewag.head()
+
+
+dravid_scores = pd.to_numeric(dravid['Bat1'].apply(lambda row: ''.join(row.split('*'))))
+shewag_scores = pd.to_numeric(shewag['Bat1'].apply(lambda row: ''.join(row.split('*'))))
+
+
+shewag_scores.var()
+dravid_scores.var()
+
+
+shewag_scores.mean()
+dravid_scores.mean()
