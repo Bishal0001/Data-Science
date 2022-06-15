@@ -1,0 +1,23 @@
+Mark the options which are true about the outputs for code snippets a and b.
+
+Code a:
+
+
+x = np.array([[200,200,200],[300,300,300],[400,400,400]])
+v = np.array([200,300,400])
+print((x / v[:,None])[1][1]) # [1][1] is the indexing used after deviding x / v[:,None].
+
+
+
+
+ANS :  1
+---------------------------------------------------------
+
+Code b:
+
+p = np.array([[0], [10], [20]])
+q = np.array([10, 11, 12]) 
+print((p+q)[1][1]) 
+
+
+ANS :  21
