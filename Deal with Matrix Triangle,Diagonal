@@ -1,0 +1,14 @@
+''' Basic numpy functions to deal with triangle, diagonal etc.'''
+
+
+a.  np.triu(arr) = array([[2,3,4,5],[0,7,3,5],[0,0,6,9],[0,0,0,19]])
+np.triu() returns the upper triangle of the array, including diagonals
+
+b.  np.tril(arr) = array([[2,0,0,0],[1,7,0,0],[2,8,6,0],[11,23,12,19]])
+no.tril() returns lower triangle of array, including diagonals
+
+c.  np.diag(arr, k=1) = array([3,3,9])
+np.diag() returns the diagonal elements of array for k=1 (1 above the main diagonal)
+
+d.  arr*np.eye(arr.shape[1],k=1, dtype=int) = array([[2,0,0,0],[0,7,0,0],[0,0,6,0],[0,0,0,19]])
+np.eye() function returns all the values equal to 0, except the Kth diagonals which are equal to 1
