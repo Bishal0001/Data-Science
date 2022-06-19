@@ -1,0 +1,61 @@
+'''
+You're given a record of students with their registration dates and registration ids. You're also given the marks scored by each of the students in Physics, Chemistry, and Mathematics. You need to find out the month that observed the maximum registrations. Then return the average marks scored in each subject. In case of a tie, select the month that comes first (lexicographically).
+
+Sample Input:
+
+The code for the input dataframe is:
+
+df = pd.DataFrame({'Date':["2015-12-06", "2011-12-27", "2015-09-07", "2012-12-21", "2020-02-13", "2015-06-09"], 'RID':[498, 721, 375, 464, 813, 853], 'Phy':[22, 45, 1, 65, 22, 17], 'Chem':[52, 56, 32, 50, 24, 61], 'Math':[63, 37, 68, 62, 43 ,42]}) 
+
+
+Sample Output
+
+The function is supposed to return a series for this sample returned series will be:
+
+
+
+The returned series is just printed with space in the end.
+
+DEC 3 44.0 52.67 54.0
+Sample's Explanation:
+As it's visible from the dataframe December is most frequent therefore its first three-letter in upper case are printed first.
+As December's frequency is 3, 3 is printed.
+Then the average marks in chemistry, physics, and maths for the registration month December, are printed up to 2 decimal places. For eg. The IDs 498, 721, and 464 the average of chemistry is (52+56+50)/3.
+Notes
+
+Round up to 2 decimal points.
+Refer to 3-letter abbreviations for each month, i.e. JAN for January, FEB for February, and so on.
+You are allowed to use functions like value_counts(), apply(), mean(),sort_index(), etc.
+
+'''
+
+
+'''SOL : 1'''
+
+import pandas as pd
+import numpy as np
+def solve(df):
+
+    df['new_month'] = pd.to_datetime(df['Date']).dt.month_name().str[:3]
+    
+    y = df['new_month'].value_counts().values[0]
+    
+    #f = df['new_month'].sort_index().values[0]
+
+    x=df['new_month'].value_counts().sort_index()
+
+    f = x[x.values== y].index[0]
+
+    o = df[df['new_month'] == f]
+
+    p = round(o['Chem'].mean(),2)
+
+    q = round(o['Phy'].mean(),2)
+
+    r = round(o['Math'].mean(),2)
+
+
+    w = pd.Series([f.upper(),y,p,q,r])
+    
+
+    return w
