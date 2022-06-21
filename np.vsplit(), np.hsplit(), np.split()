@@ -1,0 +1,26 @@
+'''Explanation'''
+
+np.vsplit(), np.hsplit(), np.split() will give ValueError if the size of the buckets are unequal unless the indices of partition are already given.
+For example in the question's code, we have defined the indices of the rows before which the arrays are cut row-wise.
+
+np.hsplit() divides the arrays horizontally (axis=0) which is not required here.
+
+np.array_split() divides the array into the given number of divisions no matter whether they are equal or not.
+
+np.array_split() divides the array into the given number of divisions no matter whether they are equal or not. But the catch here is that if the 
+sizes of divisions are not equal, first division will have different size, therefore if we want the last division to have different size rather 
+than first, we will have to pass an array of indices
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+'''Sample Code'''
+
+m = 11
+n = 10
+X = np.random.uniform(low=0.0, high=1.0, size=(m,n)).astype(np.float64)
+b=2  #no. of buckets
+buckets = np.vsplit(X, [(m//b)*i for i in range(1,b)])
+# Compute the mean within each bucket
+b_means = [np.mean(x, axis=0) for x in buckets]
+# Compute the median-of-means
+median = np.median(np.array(b_means), axis=0)
+print(median) #(n,) shaped array
